@@ -2,6 +2,14 @@
   "header": {
     "TITLE": "Users"
   },
+   "user": {
+     "NAME": "Name",
+     "EMAIL": "Email",
+     "PHONE": "Phone",
+    "ADDRESS": "Address",
+    "WEBSITE": "Website",
+    "POSTS": "Posts"
+  },
   "errors": {
     "NOT_FOUND": "Not Found"
   }

@@ -1,3 +1,11 @@
-<p>
-  posts works!
-</p>
+<div class="container">
+  <button (click)="goBack()" class="btn btn-success mt-3">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  <ng-container *ngFor="let post of userPost$ | async">
+    <div class="row">
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.body }}</p>
+    </div>
+  </ng-container>
+</div>

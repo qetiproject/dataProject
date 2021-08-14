@@ -1,7 +1,24 @@
-<ng-container *ngIf="userData$ | async as userData">
-  <div class="row">{{ userData | json }}</div>
-</ng-container>
-
-<button type="button" class="btn btn-success mt-3" (click)="goToPosts()">
-  posts
-</button>
+<div class="container mt-3">
+  <ng-container *ngIf="userData$ | async as userData">
+    <div class="row">
+      <h1>{{ "user.NAME" | translate }}: {{ userData.name }}</h1>
+      <span> {{ "user.EMAIL" | translate }}: {{ userData.email }}</span>
+      <span>{{ "user.PHONE" | translate }}: {{ userData.phone }}</span>
+      <p class="mb-0">
+        {{ "user.ADDRESS" | translate }}
+        : {{ userData.address.city }}/{{ userData.address.street }}
+      </p>
+      <span>
+        {{ "user.WEBSITE" | translate }}: https://{{ userData.website }}
+      </span>
+    </div>
+  </ng-container>
+  <div class="d-flex justify-content-between">
+    <button (click)="goBack()" class="btn btn-success mt-3">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <button type="button" class="btn btn-success mt-3" (click)="goToPosts()">
+      {{ "user.POSTS" | translate }}
+    </button>
+  </div>
+</div>

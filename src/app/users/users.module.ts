@@ -5,12 +5,12 @@ import { PostsComponent } from './posts/posts.component';
 import { UserListItemComponent } from './user-list/user-list-item/user-list-item.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { environment } from 'src/environments/environment';
-import { PostService } from './services';
+import { SharedModule } from '../shared/shared.module';
 
 export const BASE_URL = new InjectionToken<string>('base api token');
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, SharedModule],
   declarations: [
     UserListComponent,
     UserListItemComponent,
@@ -19,7 +19,6 @@ export const BASE_URL = new InjectionToken<string>('base api token');
   ],
   providers: [
     // UserService,
-    // PostService,
     {
       provide: BASE_URL,
       useValue: environment.baseUrl,
