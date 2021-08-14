@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../services';
+import { PostService, UserService } from '../services';
 
 @Component({
   selector: 'app-posts',
@@ -8,9 +8,9 @@ import { PostService } from '../services';
   providers: [PostService],
 })
 export class PostsComponent implements OnInit {
-  constructor(private postService: PostService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.postService.getPosts().subscribe((x) => console.log(x));
+    this.userService.getUserWithPost(1).subscribe((x) => console.log(x));
   }
 }

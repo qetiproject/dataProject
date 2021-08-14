@@ -1,3 +1,7 @@
-<p>
-  user-detail works!
-</p>
+<ng-container *ngIf="userData$ | async as userData">
+  <div class="row">{{ userData | json }}</div>
+</ng-container>
+
+<button type="button" class="btn btn-success mt-3" (click)="goToPosts()">
+  posts
+</button>

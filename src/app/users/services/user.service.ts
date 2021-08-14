@@ -15,7 +15,11 @@ export class UserService {
     return this.http.get<UserResult[]>(`${this.baseUrl}/users`);
   }
 
-  getUser(): Observable<UserResult> {
-    return this.http.get<UserResult>(`${this.baseUrl}/users/1`);
+  getUser(id: number): Observable<UserResult> {
+    return this.http.get<UserResult>(`${this.baseUrl}/users/${id}`);
+  }
+
+  getUserWithPost(id: number): Observable<UserResult> {
+    return this.http.get<UserResult>(`${this.baseUrl}/users/${id}/posts`);
   }
 }

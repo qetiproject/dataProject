@@ -20,7 +20,6 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.fetchUser();
-    console.log(this.users);
   }
 
   fetchUser() {

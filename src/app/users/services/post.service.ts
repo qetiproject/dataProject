@@ -12,8 +12,7 @@ export class PostService {
     private http: HttpClient
   ) {}
 
-  getPosts(): Observable<any> {
-    console.log(this.baseUrl);
-    return this.http.get<any>(`${this.baseUrl}/posts`);
+  getPosts(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/posts?userId=${id}`);
   }
 }
