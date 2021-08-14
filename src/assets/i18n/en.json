@@ -1,0 +1,8 @@
+{
+  "header": {
+    "TITLE": "Users"
+  },
+  "errors": {
+    "NOT_FOUND": "Not Found"
+  }
+}
