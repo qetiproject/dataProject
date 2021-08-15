@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/services';
 import { UserService } from '../services';
-import { finalize, tap } from 'rxjs/operators';
+import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { UserResult, UserView } from '../models/user';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -11,7 +12,7 @@ import { UserResult, UserView } from '../models/user';
   providers: [UserService],
 })
 export class UserListComponent implements OnInit {
-  users: UserResult[] = [];
+  users$!: Observable<UserResult[]>;
 
   constructor(
     private userService: UserService,
@@ -20,13 +21,24 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.fetchUser();
+    this.getUsers();
   }
 
   fetchUser() {
     this.loadingService.start();
-    this.userService
+    this.users$ = this.userService
       .getUsers()
-      .pipe(finalize(() => this.loadingService.stop()))
-      .subscribe((x) => (this.users = x));
+      .pipe(finalize(() => this.loadingService.stop()));
+  }
+
+  getUsers(): Observable<any> {
+    return this.userService.getUsers().pipe(
+      map((c) => {
+        console.log(c);
+      }),
+      catchError(() => {
+        return of(null);
+      })
+    );
   }
 }

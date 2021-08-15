@@ -22,4 +22,7 @@ export interface User {
   name: string;
 }
 
-export type UserView = { name: string; id: number };
+export interface UserView {
+  name: string;
+  id: number;
+}
