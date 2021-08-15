@@ -26,3 +26,10 @@ export interface UserView {
   name: string;
   id: number;
 }
+
+export interface UserPost {
+  id: number;
+  userId: number;
+  title: string;
+  body: string;
+}

@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post } from '../models/post';
-import { UserResult } from '../models/user';
+import { UserPost, UserResult } from '../models/user';
 
 @Injectable()
 export class UserService {
@@ -20,7 +19,7 @@ export class UserService {
     return this.http.get<UserResult>(`${this.baseUrl}/users/${id}`);
   }
 
-  getUserWithPost(id: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.baseUrl}/users/${id}/posts`);
+  getUserWithPost(id: number): Observable<UserPost[]> {
+    return this.http.get<UserPost[]>(`${this.baseUrl}/users/${id}/posts`);
   }
 }

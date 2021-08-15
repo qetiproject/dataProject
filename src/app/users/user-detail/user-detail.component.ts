@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services';
-import { UserResult } from '../models/user';
+import { UserResult } from '../models';
 import { UserService } from '../services';
 
 @Component({

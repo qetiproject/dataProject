@@ -1,19 +1,18 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services';
-import { Post } from '../models/post';
+import { UserPost } from '../models';
 import { UserService } from '../services';
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss'],
-  providers: [UserService],
+  selector: 'app-user-posts',
+  templateUrl: './user-posts.component.html',
+  styleUrls: ['./user-posts.component.scss'],
 })
-export class PostsComponent implements OnInit {
-  userPost$!: Observable<Post[]>;
+export class UserPostsComponent implements OnInit {
+  userPost$!: Observable<UserPost[]>;
   id: number;
 
   constructor(

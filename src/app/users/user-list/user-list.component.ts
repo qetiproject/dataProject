@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/services';
 import { UserService } from '../services';
-import { catchError, finalize, map, tap } from 'rxjs/operators';
-import { UserResult, UserView } from '../models/user';
+import { catchError, finalize, map } from 'rxjs/operators';
+import { UserResult } from '../models/user';
 import { Observable, of } from 'rxjs';
 
 @Component({
