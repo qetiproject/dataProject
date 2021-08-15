@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserPost, UserResult } from '../models/user';
+import { BASE_URL } from '../users.module';
 
 @Injectable()
 export class UserService {
-  private baseUrl = 'https://jsonplaceholder.typicode.com';
-
   constructor(
-    private http: HttpClient // @Inject(BASE_URL) private baseUrl: string,
+    private http: HttpClient,
+    @Inject(BASE_URL) private baseUrl: string
   ) {}
 
   getUsers(): Observable<UserResult[]> {

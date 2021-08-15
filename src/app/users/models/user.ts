@@ -6,20 +6,12 @@ export interface UserResult {
   website: string;
   totalItems: number;
   name: string;
+  company: { name: string };
 }
 
 export interface Address {
   city: string;
   street: string;
-}
-export interface User {
-  email: string;
-  id: number;
-  phone: string;
-  website: string;
-  city: string;
-  street: string;
-  name: string;
 }
 
 export interface UserView {

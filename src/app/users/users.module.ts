@@ -8,6 +8,7 @@ import {
   UserPostsComponent,
 } from '.';
 import { environment } from 'src/environments/environment';
+import { UserService } from './services';
 
 export const BASE_URL = new InjectionToken<string>('base api token');
 
@@ -20,7 +21,7 @@ export const BASE_URL = new InjectionToken<string>('base api token');
     UserPostsComponent,
   ],
   providers: [
-    // UserService,
+    UserService,
     {
       provide: BASE_URL,
       useValue: environment.baseUrl,

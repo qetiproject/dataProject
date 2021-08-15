@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
-import { LoadingService } from 'src/app/services';
 import { UserPost } from '../models';
-import { UserService } from '../services';
+import { UserFacade } from '../user.facade';
 
 @Component({
   selector: 'app-user-posts',
   templateUrl: './user-posts.component.html',
   styleUrls: ['./user-posts.component.scss'],
+  providers: [UserFacade],
 })
 export class UserPostsComponent implements OnInit {
-  userPost$!: Observable<UserPost[]>;
   id: number;
 
+  get userPost$(): Observable<UserPost[]> {
+    return this.userFacade.userPost$;
+  }
   constructor(
-    private userService: UserService,
-    private loadingService: LoadingService,
+    private userFacade: UserFacade,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -28,11 +28,9 @@ export class UserPostsComponent implements OnInit {
     this.getPostByUser(this.id);
   }
 
+  // user'sposts
   getPostByUser(id: number) {
-    this.loadingService.start();
-    this.userPost$ = this.userService
-      .getUserWithPost(id)
-      .pipe(finalize(() => this.loadingService.stop()));
+    this.userFacade.getPostByUser(id);
   }
 
   goBack() {

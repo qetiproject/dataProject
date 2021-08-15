@@ -1,25 +1,25 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
-import { LoadingService } from 'src/app/services';
 import { UserResult } from '../models';
 import { UserService } from '../services';
+import { UserFacade } from '../user.facade';
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.scss'],
-  providers: [UserService],
+  providers: [UserService, UserFacade],
 })
 export class UserDetailComponent implements OnInit {
-  userData$!: Observable<UserResult>;
   id!: number;
 
+  get userData$(): Observable<UserResult> {
+    return this.userFacade.userData$;
+  }
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userService: UserService,
-    private loadingService: LoadingService,
+    private userFacade: UserFacade,
     private router: Router
   ) {
     this.id = this.activatedRoute.snapshot.params['id'];
@@ -29,15 +29,9 @@ export class UserDetailComponent implements OnInit {
     this.getUser();
   }
 
-  private initUserDetails() {
-    this.loadingService.start();
-    this.userData$ = this.userService
-      .getUser(this.id)
-      .pipe(finalize(() => this.loadingService.stop()));
-  }
-
+  //user's detail info
   getUser() {
-    this.initUserDetails();
+    this.userFacade.initUserDetails(this.id);
   }
 
   goToPosts() {

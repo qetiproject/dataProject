@@ -8,7 +8,10 @@
      "PHONE": "Phone",
     "ADDRESS": "Address",
     "WEBSITE": "Website",
-    "USER_POSTS": "User's Posts"
+    "USER_POSTS": "User's Posts",
+    "company": {
+      "NAME": "Company Name"
+    }
   },
   "errors": {
     "NOT_FOUND": "Not Found"

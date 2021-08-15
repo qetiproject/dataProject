@@ -1,44 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from 'src/app/services';
 import { UserService } from '../services';
-import { catchError, finalize, map } from 'rxjs/operators';
 import { UserResult } from '../models/user';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { UserFacade } from '../user.facade';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
-  providers: [UserService],
+  providers: [UserService, UserFacade],
 })
 export class UserListComponent implements OnInit {
-  users$!: Observable<UserResult[]>;
+  get users$(): Observable<UserResult[]> {
+    return this.userFacade.users$;
+  }
 
-  constructor(
-    private userService: UserService,
-    private loadingService: LoadingService
-  ) {}
+  constructor(private userFacade: UserFacade) {}
 
   ngOnInit() {
     this.fetchUser();
-    this.getUsers();
   }
 
+  //get userss
   fetchUser() {
-    this.loadingService.start();
-    this.users$ = this.userService
-      .getUsers()
-      .pipe(finalize(() => this.loadingService.stop()));
-  }
-
-  getUsers(): Observable<any> {
-    return this.userService.getUsers().pipe(
-      map((c) => {
-        console.log(c);
-      }),
-      catchError(() => {
-        return of(null);
-      })
-    );
+    this.userFacade.getUsers();
   }
 }
